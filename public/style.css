@@ -83,6 +83,7 @@ button {
 
 button:hover {
   background-color: #00cc00;
+  cursor: pointer;
 }
 
 button:active {
@@ -91,6 +92,7 @@ button:active {
 
 #random:hover {
   font-size: 22px;
+  cursor: pointer;
 }
 
 #random:active {

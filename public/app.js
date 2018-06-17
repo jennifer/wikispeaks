@@ -104,7 +104,7 @@ function handleHeaderClick() {
 
 // ajax request here to my server
 // my server communicates to Polly
-//move this \/ to server.js
+// move this vvv to server.js
 function getAudioFromPollyAPI (pollyText) {
   AWS.config.aws_access_key_id = config.aws_access_key_id;
   AWS.config.aws_secret_access_key = config.aws_secret_access_key;
