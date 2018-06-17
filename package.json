@@ -1,0 +1,17 @@
+{
+  "name": "wikispeaks-node",
+  "version": "1.0.0",
+  "description": "wikispeaks-reader",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jennifer Kerssen",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.258.1",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "node-uuid": ">= 1.4.1"
+  }
+}
