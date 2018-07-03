@@ -29,5 +29,5 @@ Three-column results (desktop)
 
 ## Author
 
-* **Jennifer Kerssen** - [jennifer](https://github.com/jennifer)
+[Jennifer Kerssen](https://github.com/jennifer)
 
