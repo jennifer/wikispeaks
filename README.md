@@ -1,11 +1,11 @@
 # WikispeakS
 
+**App under construction: refactoring to use Node.js**
+
 A text-to-speech AI service enabling users to search for articles on Wikipedia, select topics, and listen to content read aloud. A random article generator lets users to listen and learn about people, places, and things selected at random from the vast Wiki encyclopedia. 
 
 * Search Wikipedia or request a random article
 * Click a topic to listen
-
-**App under construction: refactoring to use Node.js**
 
 ### Screenshots
 
