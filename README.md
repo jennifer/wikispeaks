@@ -1,4 +1,4 @@
-# WikispeakS
+# Wikispeaks
 
 **App under construction: refactoring to use Node.js**
 
