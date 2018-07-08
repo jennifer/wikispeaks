@@ -103,44 +103,11 @@ function handleHeaderClick() {
   });
 }
 
-// ajax request here to my server
-// my server communicates to Polly
-// move this vvv to server.js
 
-/*
-function getAudioFromPollyAPI (pollyText) {
-  const polly = new AWS.Polly({
-    signatureVersion: 'v4',
-    region: 'us-west-2'
-  });
-  const params = {
-    OutputFormat: 'mp3', 
-    Text: `${pollyText}`,
-    TextType: "text", 
-    VoiceId: "Kimberly"
-  };
-    polly.synthesizeSpeech(params, function(err, data) {
-      if (err){
-      console.log(err, err.stack);
-      } 
-      else {
-        let uInt8Array = new Uint8Array(data.AudioStream);
-        let arrayBuffer = uInt8Array.buffer;
-        let blob = new Blob([arrayBuffer]);
-
-        let audio = $('audio');
-        let url = URL.createObjectURL(blob);
-        audio[0].src = url;
-        audio[0].play(); 
-      }
-  });
-}
-*/
 function getAudioFromPollyAPI (pollyText) {
   console.log(pollyText);
-  $.ajax({
+  return fetch('/', {
     type: 'POST',
-    url: '/',
     data: pollyText,
     headers: {
       'Content-Type': 'text/plain'
@@ -148,8 +115,8 @@ function getAudioFromPollyAPI (pollyText) {
   })
   .then(blob => {
     let audio = $('audio');
-    let url = URL.createObjectURL(blob);
     console.log('blob = ' + blob);
+    let url = URL.createObjectURL(blob);
     audio[0].src = url;
     audio[0].play(); 
   })
@@ -163,7 +130,7 @@ let submitFunc = function submitSearch() {
     $('.image-wrapper').empty();
     $('#article-title').empty();
     pollyText = '';
-    getAudioFromPollyAPI(pollyText);
+    //getAudioFromPollyAPI(pollyText);
     let inputURL = ``;
 
     const queryTarget = $(event.currentTarget).find('.search-input');

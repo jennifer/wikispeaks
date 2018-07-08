@@ -19,7 +19,6 @@ app.post('/', (req, res) => {
   const params = {
     OutputFormat: 'mp3', 
     Text: req.body,
-    TextType: "text", 
     VoiceId: 'Kimberly'
   };
   polly.synthesizeSpeech(params, function(err, data) {
