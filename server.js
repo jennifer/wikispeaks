@@ -1,37 +1,40 @@
 "use strict";
 
 const AWS = require('aws-sdk');
-const Fs = require('fs');
 const express = require('express');
-const uuid = require('node-uuid');
 const app = express();
 
-require('dotenv').config();
-const { PORT, aws_access_key_id, aws_secret_access_key } = require('./config');
+require('./awsauth.js');
+
+const { PORT } = require('./config');
 
 app.use(express.static('public'));
-app.listen(PORT, () => console.log('Listening on PORT'));
 
-
-
-/*
-// Load the SDK and UUID
-
-
-// Create an S3 client
-//const s3 = new AWS.S3();
-
-// Create a bucket and upload something into it
-const bucketName = 'wikispeaks-node' + uuid.v4();
-const keyName = 'hello_world.txt';
-
-s3.createBucket({Bucket: bucketName}, function() {
-  const params = {Bucket: bucketName, Key: keyName, Body: 'Hello World!'};
-  s3.putObject(params, function(err, data) {
-    if (err)
-      console.log(err)
-    else
-      console.log("Successfully uploaded data to " + bucketName + "/" + keyName);
+app.post('/', (req, res) => {
+  console.log('Body = ' + req.body);
+  const polly = new AWS.Polly({
+    signatureVersion: 'v4',
+    region: 'us-west-2'
+  })
+  const params = {
+    OutputFormat: 'mp3', 
+    Text: req.body,
+    TextType: "text", 
+    VoiceId: 'Kimberly'
+  };
+  polly.synthesizeSpeech(params, function(err, data) {
+    if (err){
+      console.log(err, err.stack);
+      res.status(400).send('Request failed');
+    } 
+    else {
+      console.log('sending response...')
+      let uInt8Array = new Uint8Array(data.AudioStream);
+      let arrayBuffer = uInt8Array.buffer;
+      let blob = new Blob([arrayBuffer]);
+      res.status(200).send(blob);
+    }
   });
 });
-*/
+
+app.listen(PORT, () => console.log('Listening on PORT 8080'));

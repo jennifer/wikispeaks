@@ -97,6 +97,7 @@ function handleHeaderClick() {
   $('.contents-links').on('click', '.header-button', event => {
     event.preventDefault();
     let index = $(event.target).attr('data');
+    console.log(plainTextArr);
     let pollyText = plainTextArr[index];
     getAudioFromPollyAPI(pollyText);
   });
@@ -105,13 +106,13 @@ function handleHeaderClick() {
 // ajax request here to my server
 // my server communicates to Polly
 // move this vvv to server.js
+
+/*
 function getAudioFromPollyAPI (pollyText) {
-  AWS.config.aws_access_key_id = config.aws_access_key_id;
-  AWS.config.aws_secret_access_key = config.aws_secret_access_key;
-  const Polly = new AWS.Polly({
+  const polly = new AWS.Polly({
     signatureVersion: 'v4',
     region: 'us-west-2'
-  })
+  });
   const params = {
     OutputFormat: 'mp3', 
     Text: `${pollyText}`,
@@ -133,6 +134,25 @@ function getAudioFromPollyAPI (pollyText) {
         audio[0].play(); 
       }
   });
+}
+*/
+function getAudioFromPollyAPI (pollyText) {
+  console.log(pollyText);
+  $.ajax({
+    type: 'POST',
+    url: '/',
+    data: pollyText,
+    headers: {
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(blob => {
+    let audio = $('audio');
+    let url = URL.createObjectURL(blob);
+    console.log('blob = ' + blob);
+    audio[0].src = url;
+    audio[0].play(); 
+  })
 }
 
 let submitFunc = function submitSearch() {
