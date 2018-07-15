@@ -29,10 +29,11 @@ app.post('/', parser, (req, res) => {
     } 
     else {
       let buffer = Buffer.from( new Uint8Array(data.AudioStream) );
+      let jsonBuffer = JSON.stringify(buffer);
       res.writeHead(200, {
-        "Content-Type": "audio/mp3"
+        'Content-Type': 'application/json'
       });
-      res.write(buffer);
+      res.write(jsonBuffer);
       res.end();
       console.log('sending response...');
     }
@@ -40,9 +41,3 @@ app.post('/', parser, (req, res) => {
 });
 
 app.listen(PORT, () => console.log('Listening on PORT 8080'));
-
-/*
-let uInt8Array = new Uint8Array(data.AudioStream);
-let arrayBuffer = uInt8Array.buffer;
-let blob = new Blob([arrayBuffer]);
-*/

@@ -113,30 +113,21 @@ function getAudioFromPollyAPI (pollyText) {
       'Content-Type': 'application/json'
     },
     success: function(buffer) {
+      console.log(buffer);
+
+      let uInt8Array = new Uint8Array(buffer.data);
+      console.log(uInt8Array);
+
+      let arrayBuffer = uInt8Array.buffer;
+      let blob = new Blob([arrayBuffer]);
+      let url = URL.createObjectURL(blob);
+      console.log(blob);
+      console.log(url);
       let audio = $('audio');
-      console.log('buffer = ' + buffer);
-      var binaryData = [];
-      // let arraybuffer = Uint8Array.from(buffer).buffer;
-      binaryData.push(buffer);
-      // let url = URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}));
-      let url = URL.createObjectURL(buffer);
       audio[0].src = url;
       audio[0].play(); 
     },
     error: console.log('API error')
-  /*
-  })
-  .then(buffer => {
-    let audio = $('audio');
-    console.log('buffer = ' + buffer);
-    var binaryData = [];
-    // let arraybuffer = Uint8Array.from(buffer).buffer;
-    binaryData.push(buffer);
-    // let url = URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}));
-    let url = URL.createObjectURL(buffer);
-    audio[0].src = url;
-    audio[0].play(); 
-    */
   })
 }
 
@@ -148,7 +139,6 @@ let submitFunc = function submitSearch() {
     $('.image-wrapper').empty();
     $('#article-title').empty();
     pollyText = '';
-    //getAudioFromPollyAPI(pollyText);
     let inputURL = ``;
 
     const queryTarget = $(event.currentTarget).find('.search-input');
