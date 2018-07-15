@@ -97,28 +97,46 @@ function handleHeaderClick() {
   $('.contents-links').on('click', '.header-button', event => {
     event.preventDefault();
     let index = $(event.target).attr('data');
-    console.log(plainTextArr);
     let pollyText = plainTextArr[index];
     getAudioFromPollyAPI(pollyText);
   });
 }
 
-
 function getAudioFromPollyAPI (pollyText) {
   console.log(pollyText);
-  return fetch('/', {
+  $.ajax ({
+    url: '/',
     type: 'POST',
-    data: pollyText,
+    data: JSON.stringify({text: pollyText}),
+    dataType: 'json',
     headers: {
-      'Content-Type': 'text/plain'
-    }
+      'Content-Type': 'application/json'
+    },
+    success: function(buffer) {
+      let audio = $('audio');
+      console.log('buffer = ' + buffer);
+      var binaryData = [];
+      // let arraybuffer = Uint8Array.from(buffer).buffer;
+      binaryData.push(buffer);
+      // let url = URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}));
+      let url = URL.createObjectURL(buffer);
+      audio[0].src = url;
+      audio[0].play(); 
+    },
+    error: console.log('API error')
+  /*
   })
-  .then(blob => {
+  .then(buffer => {
     let audio = $('audio');
-    console.log('blob = ' + blob);
-    let url = URL.createObjectURL(blob);
+    console.log('buffer = ' + buffer);
+    var binaryData = [];
+    // let arraybuffer = Uint8Array.from(buffer).buffer;
+    binaryData.push(buffer);
+    // let url = URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}));
+    let url = URL.createObjectURL(buffer);
     audio[0].src = url;
     audio[0].play(); 
+    */
   })
 }
 
