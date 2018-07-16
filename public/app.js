@@ -103,7 +103,6 @@ function handleHeaderClick() {
 }
 
 function getAudioFromPollyAPI (pollyText) {
-  console.log(pollyText);
   $.ajax ({
     url: '/',
     type: 'POST',
@@ -113,16 +112,10 @@ function getAudioFromPollyAPI (pollyText) {
       'Content-Type': 'application/json'
     },
     success: function(buffer) {
-      console.log(buffer);
-
       let uInt8Array = new Uint8Array(buffer.data);
-      console.log(uInt8Array);
-
       let arrayBuffer = uInt8Array.buffer;
       let blob = new Blob([arrayBuffer]);
       let url = URL.createObjectURL(blob);
-      console.log(blob);
-      console.log(url);
       let audio = $('audio');
       audio[0].src = url;
       audio[0].play(); 
