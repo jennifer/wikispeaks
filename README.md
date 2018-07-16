@@ -17,15 +17,20 @@ Three-column results (desktop)
 
 ## Built With
 
+### APIs
 * Wikipedia API
 * Amazon Polly API
 
-* Javascript
+### Front End
+* JavaScript
 * JQuery
-* Node.js
-* Express.js
 * HTML
 * CSS
+
+### Back End
+* Node.js
+* Express.js
+* Heroku
 
 ## Author
 
