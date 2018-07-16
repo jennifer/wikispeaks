@@ -1,6 +1,6 @@
 # Wikispeaks
 
-**App under construction: refactoring to use Node.js**
+https://wikispeaks.herokuapp.com/
 
 A text-to-speech AI service enabling users to search for articles on Wikipedia, select topics, and listen to content read aloud. A random article generator lets users to listen and learn about people, places, and things selected at random from the vast Wiki encyclopedia. 
 
