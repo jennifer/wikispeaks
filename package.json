@@ -1,5 +1,5 @@
 {
-  "name": "wikispeaks-node",
+  "name": "wikispeaks",
   "version": "1.0.0",
   "description": "wikispeaks-reader",
   "main": "server.js",
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.258.1",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2"
   }
 }

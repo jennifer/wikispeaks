@@ -107,7 +107,6 @@ function getAudioFromPollyAPI (pollyText) {
     url: '/',
     type: 'POST',
     data: JSON.stringify({text: pollyText}),
-    dataType: 'json',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -120,7 +119,7 @@ function getAudioFromPollyAPI (pollyText) {
       audio[0].src = url;
       audio[0].play(); 
     },
-    error: console.log('API error')
+    //error: console.log('API error')
   })
 }
 

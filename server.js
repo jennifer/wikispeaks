@@ -1,11 +1,13 @@
 "use strict";
 
+require('dotenv').config();
+
 const AWS = require('aws-sdk');
 const express = require('express');
 const app = express();
 const parser = express.json();
 
-require('./awsauth.js');
+require('./config');
 
 const { PORT } = require('./config');
 
@@ -40,8 +42,4 @@ app.post('/', parser, (req, res) => {
   });
 });
 
-//app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
-
-app.listen(process.env.PORT || 8080, function(){
-  console.log(`Your app is listening on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
