@@ -40,4 +40,8 @@ app.post('/', parser, (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log('Listening on PORT 8080'));
+//app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+
+app.listen(process.env.PORT || 8080, function(){
+  console.log(`Your app is listening on port ${PORT}`);
+});
